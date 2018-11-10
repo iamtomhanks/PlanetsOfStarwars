@@ -1,0 +1,18 @@
+.graph-interaction-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(98%, -90%);
+  background: #fff;
+  padding: .3rem;
+  border-radius: 2px;
+  color: #000;
+  -webkit-box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -2px 2px 5px 0px rgba(0, 0, 0, 0.75); }
+  .graph-interaction-modal .modal-title {
+    font-weight: 500;
+    font-size: .9rem; }
+  .graph-interaction-modal .modal-data {
+    white-space: nowrap;
+    font-size: .8rem; }

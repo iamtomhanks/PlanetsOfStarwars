@@ -1,0 +1,49 @@
+@import 'Graphs/Graph.scss';
+@import 'Graphs/components/GraphInteractionModal.scss';
+@import 'Graphs/components/YAxisLabels.scss';
+@import 'Graphs/components/XAxisLabel.scss';
+
+html, body {
+  height: 100%;
+  padding:0;
+  margin:0;
+}
+html{
+  font-size: 16px;
+  position: relative;
+
+  @media(max-width: 1120px) {
+    font-size: 14px;
+  }
+  @media(max-width: 950px) {
+    font-size: 12px;
+  }
+  @media(max-width: 750px) {
+    font-size: 11px;
+  }
+  @media(max-width: 680px) {
+    font-size: 10px;
+  }
+  @media(max-width: 630px) {
+    font-size: 9px;
+  }
+  @media(max-width: 530px) {
+    font-size: 8px;
+  }
+
+}
+
+button:focus,input:focus {
+  outline:none;
+}
+
+.app-component {
+  position: relative;
+  .mode-toggle {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 40px;
+    cursor: pointer;
+  }
+}
