@@ -1,3 +1,18 @@
+This application connects to an API, retrieves information about the planets in the Stars Wars movies, then displays the data using 2 graphs:
+
+## 1. Bar Graph 
+  Shows the planetary orbital and rotational periods for each planet. The select box on the x-axis allows the user to select which data to display.
+  
+## 2. Scatter Plot
+  Shows the orbital period in relation to the rotational period for each planet. 
+  
+The two graphs can be toggled between using the red toggle switch in the top-left corner. 
+
+## The <Graph /> component can receive dynamic data, render a horizontal bar graph that allows the user to choose an x-axis value to display, as well as return a scatter plot graph to compare any two values.
+
+
+
+--------------------------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
