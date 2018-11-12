@@ -9,8 +9,7 @@ import {addGraph,xAxisValueSelect,addGraphComponentRef,graphInteraction} from 'a
 //components
 import {Bar,BarGraph} from 'components/Graphs/components/BarGraph'
 import {YAxisLabel,XAxisLabel} from 'components/Graphs/components/AxisLabels'
-import {AxisIncrements} from 'components/Graphs/components/AxisIncrements'
-import ScatterPlotItem from 'components/Graphs/components/ScatterPlot'
+import {ScatterPlot} from 'components/Graphs/components/ScatterPlot'
 
 //constants
 import {GraphTypes} from 'constants/graphs';
@@ -58,12 +57,12 @@ class Graph extends Component {
     yAxis.selectedYAxisValueObject = this.props.yAxis.values[0];
 
     if(this.props.graphType == GraphTypes.SCATTER_PLOT.type) {
-      const maxYValue = Math.max.apply(Math, this.props.data.map( bar => { return bar[xAxis.selectedXAxisValue]; }));
+      const maxYValue = Math.max.apply(Math, this.props.data.map( bar => { return bar[yAxis.selectedYAxisValue]; }));
       yAxis.maxYAxisValue = this.getMaxAxisValue(this.props.data,this.props.yAxis.values[0].value);
     }
 
     return (
-      <div className="graph-component"  ref={(node) => this.graphContainer = node}>
+      <div className={`graph-component ${this.props.graphReference}`}  ref={(node) => this.graphContainer = node}>
         {this.props.children}
         <YAxisLabel label={yAxis.selectedYAxisValueObject.label}/>
         <div className='title'>{this.props.title}</div>
@@ -95,43 +94,6 @@ class Graph extends Component {
     );
   }
 }
-
-
-const ScatterPlot = (props) => {
-  return(
-    <div className="graph-inner scatter-plot" ref={(node) => props.setComponentRef(node)}>
-      <AxisIncrements
-        maxValue={props.yAxis.maxYAxisValue}
-        axis='y'
-        graphComponentRef={props.graphComponentRef}
-      />
-      {(props.data.length > 0) &&
-
-        props.data.map((bar, index) => {
-          return(
-            <ScatterPlotItem
-              data={bar}
-              key={bar[props.yAxis.selectedYAxisValueObject.value]}
-              id={bar[props.yAxis.selectedYAxisValueObject.value]}
-              yAxis={props.yAxis}
-              xAxis={props.xAxis}
-              graphReference={props.graphReference}
-              graphInteraction={props.graphInteraction}
-              graphComponentRef={props.graphComponentRef}
-              itemTitleValue={props.itemTitleValue}
-            />
-          )
-      })}
-      <AxisIncrements
-        maxValue={props.xAxis.maxXAxisValue}
-        axis='x'
-        graphComponentRef={props.graphComponentRef}
-      />
-    <XAxisLabel label={props.xAxis.selectedXAxisValueObject.label}/>
-    </div>
-  )
-}
-
 
 export default connect(({planets,graphs}) => ({planets,graphs}) ,{
   addGraph,

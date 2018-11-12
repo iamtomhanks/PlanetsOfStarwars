@@ -25,14 +25,13 @@ class App extends Component {
 
   render() {
     const planets = this.props.planets.planets;
-    // console.log(planets)
     if(planets.length == 0) {
       return(
         <img src='/images/loader.gif' className='app-loader'/>
       )
     }
     return (
-      <div className="app-component" style={{}}>
+      <div className="app-component">
         {(this.props.app.activeGraph == GraphReferences.PLANETS_BAR_GRAPH) &&
           <Graph
             data={planets}
@@ -48,7 +47,6 @@ class App extends Component {
             graphReference={GraphReferences.PLANETS_BAR_GRAPH}
             graphType={GraphTypes.BAR_GRAPH.type}
           >
-            <ModeToggle state={GraphReferences.PLANETS_BAR_GRAPH} onClick={this.props.updateActiveGraph}/>
           </Graph>
         }
         {(this.props.app.activeGraph == GraphReferences.PLANETS_SCATTER_PLOT) &&
@@ -66,9 +64,9 @@ class App extends Component {
             graphReference={GraphReferences.PLANETS_SCATTER_PLOT}
             graphType={GraphTypes.SCATTER_PLOT.type}
           >
-            <ModeToggle state={GraphReferences.PLANETS_SCATTER_PLOT} onClick={this.props.updateActiveGraph}/>
           </Graph>
         }
+        <ModeToggle state={this.props.app.activeGraph} onClick={this.props.updateActiveGraph}/>
       </div>
     );
   }

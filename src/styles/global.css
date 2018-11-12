@@ -84,6 +84,14 @@
     white-space: nowrap;
     font-size: .8rem; }
 
+.x-axis-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 1.3rem;
+  color: #4ECDC3; }
+
 .y-axis-data-label {
   line-height: 40px;
   transform: translateX(-100%);
@@ -96,17 +104,19 @@
   transform: rotate(270deg);
   top: 50%;
   font-size: 1.3rem;
-  left: -4rem;
   color: #4ECDC3; }
 
-.x-axis-label {
-  position: absolute;
-  bottom: -5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 1.3rem;
-  color: #4ECDC3; }
+.PLANETS_SCATTER_PLOT .x-axis-label {
+  bottom: -2.3rem; }
+
+.PLANETS_SCATTER_PLOT .y-axis-label {
+  left: -1.5rem; }
+
+.PLANETS_BAR_GRAPH .x-axis-label {
+  bottom: -5rem; }
+
+.PLANETS_BAR_GRAPH .y-axis-label {
+  left: -4rem; }
 
 html, body {
   height: 100%;
@@ -148,10 +158,11 @@ button:focus, input:focus {
 
 .app-component {
   position: relative;
-  background: #556270; }
+  background: #556270;
+  padding-bottom: 5px; }
   .app-component .mode-toggle {
     position: absolute;
-    top: 0;
-    right: 5px;
+    top: 1rem;
+    left: 1rem;
     width: 40px;
     cursor: pointer; }

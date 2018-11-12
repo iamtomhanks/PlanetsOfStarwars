@@ -1,7 +1,6 @@
 @import 'Graphs/Graph.scss';
 @import 'Graphs/components/GraphInteractionModal.scss';
-@import 'Graphs/components/YAxisLabels.scss';
-@import 'Graphs/components/XAxisLabel.scss';
+@import 'Graphs/components/AxisLabels.scss';
 
 html, body {
   height: 100%;
@@ -49,10 +48,11 @@ button:focus,input:focus {
 .app-component {
   position: relative;
   background: #556270;
+  padding-bottom: 5px;
   .mode-toggle {
     position: absolute;
-    top: 0;
-    right: 5px;
+    top: 1rem;
+    left: 1rem;
     width: 40px;
     cursor: pointer;
   }
