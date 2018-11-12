@@ -14,3 +14,10 @@ export const YAxisLabel = ({label}) => {
     </div>
   )
 }
+export const XAxisLabel = ({label}) => {
+  return (
+    <div className='x-axis-label'>
+      {label}
+    </div>
+  )
+}

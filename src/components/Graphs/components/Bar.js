@@ -10,7 +10,10 @@ import {addGraphSection} from 'actions/graphs'
 import {GraphSectionInteractionTypes} from 'constants/graphs'
 
 //components
-import {YAxisDataLabel} from 'components/Graphs/components/YAxisLabels'
+import {YAxisDataLabel} from 'components/Graphs/components/AxisLabels'
+import {AxisIncrements} from 'components/Graphs/components/AxisIncrements'
+import {GraphInteractionModal} from 'components/Graphs/components/GraphInteractionModal'
+import XAxisValueSelect from 'components/Graphs/components/XAxisValueSelect'
 
 class Bar extends Component {
   constructor(props){
@@ -33,15 +36,8 @@ class Bar extends Component {
     );
   }
 }
+export default connect(({graphs}) => ({graphs}) ,{addGraphSection})(Bar);
 
-const GraphInteractionModal = ({title, children}) => {
-  return(
-    <div className='graph-interaction-modal'>
-      <div className='modal-title'>{title}</div>
-      <div className='modal-data'>{children}</div>
-    </div>
-  )
-}
 
 const DisplayBar = (props) => {
   const interacting = props.graphs.graphs[props.graphReference].graphSections[props.id].active;
@@ -70,7 +66,7 @@ const DisplayBar = (props) => {
         >
         {interacting &&
           <GraphInteractionModal title={props.data[props.yAxis.value]}>
-            {props.xAxis.interationText(props.data[props.xAxis.value])}
+            {props.xAxis.interactionText(props.data[props.xAxis.value])}
           </GraphInteractionModal>
         }
         </div>
@@ -78,7 +74,34 @@ const DisplayBar = (props) => {
     </Spring>
   )
 }
-
-
-
-export default connect(({graphs}) => ({graphs}) ,{addGraphSection})(Bar);
+export const BarGraph = (props) => {
+  return(
+    <div className="graph-inner bar-graph" ref={(node) => props.setComponentRef(node)}>
+      {(props.data.length > 0) &&
+        props.data.map((bar, index) => {
+          return(
+            <Bar
+              data={bar}
+              key={bar[props.yAxis.value]}
+              id={bar[props.yAxis.value]}
+              yAxis={props.yAxis}
+              xAxis={props.xAxis.selectedXAxisValueObject}
+              graphReference={props.graphReference}
+              maxXAxisValue={props.xAxis.maxXAxisValue}
+              graphInteraction={props.graphInteraction}
+            />
+          )
+      })}
+      <AxisIncrements
+        maxValue={props.xAxis.maxXAxisValue}
+        axis='x'
+        graphComponentRef={props.graphComponentRef}
+      />
+      <XAxisValueSelect
+        xAxisValues={props.xAxis.values}
+        graphReference={props.graphReference}
+        onChange={props.onXAxisValueSelect}
+      />
+    </div>
+  )
+}

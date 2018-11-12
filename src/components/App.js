@@ -26,20 +26,24 @@ class App extends Component {
   render() {
     const planets = this.props.planets.planets;
     // console.log(planets)
+    if(planets.length == 0) {
+      return(
+        <img src='/images/loader.gif' className='app-loader'/>
+      )
+    }
     return (
       <div className="app-component" style={{}}>
-        {(planets.length > 0 && this.props.app.activeGraph == GraphReferences.PLANETS_BAR_GRAPH) &&
+        {(this.props.app.activeGraph == GraphReferences.PLANETS_BAR_GRAPH) &&
           <Graph
             data={planets}
             title={'Star Wars Planetary Information'}
             yAxis={{
               values:[
-                {value:'name', label:'Name'}
-              ]
-              , axisLabel:'Names of Planets'}}
+                {value:'name', label:'Names of Planets'}
+              ]}}
             xAxis={{values:[
-              {value:'orbital_period', label:'Planetary Orbital Period In Days', interationText:function(value){return `${value} day orbital period`}},
-              {value:'rotation_period', label:'Planetary Rotation Period In Hours', interationText:function(value){return `${value} hour rotational period`}}
+              {value:'rotation_period', label:'Planetary Rotation Period In Hours', interactionText:function(value){return `${value} hour rotational period`}},
+              {value:'orbital_period', label:'Planetary Orbital Period In Days', interactionText:function(value){return `${value} day orbital period`}}
             ]}}
             graphReference={GraphReferences.PLANETS_BAR_GRAPH}
             graphType={GraphTypes.BAR_GRAPH.type}
@@ -47,19 +51,20 @@ class App extends Component {
             <ModeToggle state={GraphReferences.PLANETS_BAR_GRAPH} onClick={this.props.updateActiveGraph}/>
           </Graph>
         }
-        {(planets.length > 0 && this.props.app.activeGraph == GraphReferences.PLANETS_SCATTER_PLOT) &&
+        {(this.props.app.activeGraph == GraphReferences.PLANETS_SCATTER_PLOT) &&
           <Graph
             data={planets}
             title={'Star Wars Planetary Information'}
             yAxis={{values:[
-              {value:'rotation_period', label:'Rotation Period In Months'}
-            ]
-            , axisLabel:'Names of Planets'}}
-            xAxis={{values:[
-              {value:'orbital_period', label:'Orbital Period In Months'}
+              {value:'orbital_period', label:'Orbital Period In Days'}
             ]}}
+            xAxis={{values:[
+              {value:'rotation_period', label:'Planetary Rotation Period In Hours',
+                interactionText:function(value1, value2){return `${value1} hour rotational period vs ${value2} day orbital period`}},
+              ]}}
+            itemTitleValue='name'
             graphReference={GraphReferences.PLANETS_SCATTER_PLOT}
-            graphType='ScatterPlot'
+            graphType={GraphTypes.SCATTER_PLOT.type}
           >
             <ModeToggle state={GraphReferences.PLANETS_SCATTER_PLOT} onClick={this.props.updateActiveGraph}/>
           </Graph>

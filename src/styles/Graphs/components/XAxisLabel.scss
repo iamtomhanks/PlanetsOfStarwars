@@ -1,8 +1,9 @@
 .x-axis-label {
   position: absolute;
-  bottom: -4rem;
+  bottom: -5rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1rem;
-  font-weight: 700;
+  white-space: nowrap;
+  font-size: 1.3rem;
+  color: #4ECDC3;
 }

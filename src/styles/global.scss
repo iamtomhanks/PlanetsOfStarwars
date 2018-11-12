@@ -7,6 +7,8 @@ html, body {
   height: 100%;
   padding:0;
   margin:0;
+  position: relative;
+  background-color: #556270;
 }
 html{
   font-size: 16px;
@@ -33,12 +35,20 @@ html{
 
 }
 
+.app-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
 button:focus,input:focus {
   outline:none;
 }
 
 .app-component {
   position: relative;
+  background: #556270;
   .mode-toggle {
     position: absolute;
     top: 0;
